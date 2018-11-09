@@ -5,21 +5,16 @@ class Shelf extends Component {
     render() {
         return (
             <div className="bookshelf">
-                <h2 className="bookshelf-title">{this.props.category}</h2>
+                <h2 className="bookshelf-title">{Object.values(this.props.catObj).toString()}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
-                        {this.props.books.map((book) => (
-                            <li>
-                                <Book info={book} onChange={(shelf) => this.props.changeShelf(shelf)}/>
+                        {this.props.books
+                            .filter((book) => book.shelf === Object.keys(this.props.catObj).toString())
+                            .map((book) => (
+                            <li key={book.id}>
+                                <Book info={book} onShelfChange={(book, shelf) => this.props.changeShelf(book, shelf)}/>
                             </li>
-                        ))
-                            
-                        /* <li>
-                            <Book/>
-                        </li>
-                        <li>
-                            <Book/>
-                        </li> */}
+                        ))}
                     </ol>
                 </div>
             </div>
