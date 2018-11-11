@@ -3,15 +3,13 @@ import Shelf from '../Shelf.js'
 import { Link } from 'react-router-dom'
 
 class MainPage extends Component {
-    state = {
-        category: [
-            {currentlyReading: "Currently Reading"},
-            {wantToRead: "Will Read"},
-            {read: "Read"}
-        ]
-    }
-
     render() {
+        const category = [
+            { currentlyReading: "Currently Reading" },
+            { wantToRead: "Will Read" },
+            { read: "Read" }
+        ]
+
         return (
             <div className="list-books">
                 <div className="list-books-title">
@@ -19,7 +17,7 @@ class MainPage extends Component {
                 </div>
                 <div className="list-books-content">
                     <div>
-                        {this.state.category.map((shelf) => (
+                        {category.map((shelf) => (
                             <Shelf changeShelf={(book, shelf) => this.props.onChangeShelf(book, shelf)} key={Object.keys(shelf).toString()} catObj={shelf} books={this.props.books}/>
                         ))}}</div>
                 </div>
